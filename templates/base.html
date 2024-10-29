@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Mi Blog{% endblock title %}</title>
+    <title>{% block title %}Mi Base{% endblock title %}</title>
 </head>
 <body>
     {% include "navbar.html" %}
     {% block content %}
+    <h1>{{ name }}</h1>
+    <h2>{{ project }}</h2>
     {% endblock content %}
 </body>
 </html>
