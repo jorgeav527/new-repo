@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET"])
 def index():
-    context = {"name": "jorge"}
+    context = {"name": "BASE"}
     return render_template(template_name_or_list="base.html", context=context)
 
 
