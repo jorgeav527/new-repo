@@ -11,7 +11,8 @@ def index():
 
 @app.route("/home", methods=["GET"])
 def home():
-    return render_template("home.html")
+    context = {"name": "HOME"}
+    return render_template(template_name_or_list="home.html", context=context)
 
 
 if __name__ == "__main__":
