@@ -4,4 +4,12 @@
 
 {% block content %}
 <h1>{{ name }}</h1>
+<figure>
+    <blockquote class="blockquote">
+      <p>A well-known quote, contained in a blockquote element.</p>
+    </blockquote>
+    <figcaption class="blockquote-footer">
+      {{ my_name }} -<cite title="Source Title">Source Title</cite>
+    </figcaption>
+</figure>
 {% endblock content %}
