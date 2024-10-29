@@ -14,7 +14,10 @@ def index():
 
 @app.route("/home", methods=["GET"])
 def home():
-    context = {"name": "HOME"}
+    context = {
+        "name": "HOME",
+        "my_name": "Jorge",
+    }
     return render_template(template_name_or_list="home.html", **context)
 
 
