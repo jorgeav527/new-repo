@@ -40,7 +40,7 @@ def get_all_post():
         print("======>", post["content"])
         print("======>", post["created"])
         print("====================================")
-    return render_template(template_name_or_list="posts.html")
+    return render_template(template_name_or_list="posts.html", posts=posts)
 
 
 if __name__ == "__main__":
