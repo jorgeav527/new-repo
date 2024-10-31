@@ -58,12 +58,13 @@ def get_all_post():
 
 @app.route("/post/<int:post_id>", methods=["GET"])
 def get_one_post(post_id):
-    conn = get_db_connection()
-    post = conn.execute("SELECT * FROM posts WHERE id = ?", (post_id,)).fetchone()
-    conn.close()
-    if post is None:
-        abort(404)
-    return render_template(template_name_or_list="post/post.html", post=post)
+    if request.method == "GET":
+        conn = get_db_connection()
+        post = conn.execute("SELECT * FROM posts WHERE id = ?", (post_id,)).fetchone()
+        conn.close()
+        if post is None:
+            abort(404)
+        return render_template(template_name_or_list="post/post.html", post=post)
 
 
 @app.route("/post/create", methods=["GET", "POST"])
@@ -82,12 +83,41 @@ def create_one_post():
     elif request.method == "GET":
         return render_template("post/create.html")
 
+<<<<<<< HEAD
     # conn = get_db_connection()
     # post = conn.execute("SELECT * FROM posts WHERE id = ?", (post_id,)).fetchone()
     # conn.close()
     # if post is None:
     #     abort(404)
     # return render_template(template_name_or_list="post/post.html", post=post)
+>>>>>>> upstream/main
+=======
+
+@app.route("/post/edit/<int:post_id>", methods=["GET", "POST"])
+def edit_one_post(post_id):
+    conn = get_db_connection()
+    post = conn.execute("SELECT * FROM posts WHERE id = ?", (post_id,)).fetchone()
+    conn.close()
+    print("antes", post["id"], post["title"], post["content"])
+
+    if request.method == "POST":
+        title = request.form["title"]
+        content = request.form["content"]
+        conn = get_db_connection()
+        conn.execute(
+            "UPDATE posts SET title = ?, content = ? WHERE id = ?",
+            (title, content, post_id),
+        )
+        conn.commit()
+        conn.close()
+        conn = get_db_connection()
+        post = conn.execute("SELECT * FROM posts WHERE id = ?", (post_id,)).fetchone()
+        conn.close()
+        print("despues", post["id"], post["title"], post["content"])
+        return redirect(url_for("get_all_post"))
+
+    if request.method == "GET":
+        return render_template(template_name_or_list="post/edit.html", post=post)
 >>>>>>> upstream/main
 
 
