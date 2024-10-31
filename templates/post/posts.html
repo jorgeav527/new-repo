@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Mi BLOG{% endblock title %}
+
+{% block content %}
+<h1>Bienvenido a Mis Posts</h1>
+<p>Algunos posts acontinuación:</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Titulo</th>
+            <th>Contenido</th>
+            <th>Fecha de Creación</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for post in posts %}
+        <tr>
+            <th><a href="{{ url_for('get_one_post', post_id=post['id']) }}">{{ post["id"] }}</a></th>
+            <th>{{ post["title"] }}</th>
+            <th>{{ post["content"] }}</th>
+            <th>{{ post["created"] }}</th>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
