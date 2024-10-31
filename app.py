@@ -1,13 +1,7 @@
-<<<<<<< HEAD
-from flask import Flask, render_template
-import sqlite3
-
-=======
 from flask import Flask, render_template, abort, request, redirect, url_for
 import sqlite3
 
 
->>>>>>> upstream/main
 def get_db_connection():
     conn = sqlite3.connect("database.db")
     conn.row_factory = sqlite3.Row
@@ -31,10 +25,7 @@ def home():
     context = {
         "name": "HOME",
         "my_name": "Jorge",
-<<<<<<< HEAD
-=======
         "list_languages": ["python", "go", "rust", "js", "ruby"],
->>>>>>> upstream/main
     }
     return render_template(template_name_or_list="home.html", **context)
 

@@ -1,6 +1,2 @@
 pandas==2.2.3
-<<<<<<< HEAD
 Flask==3.0.3
-=======
-Flask==3.0.3
->>>>>>> upstream/main
