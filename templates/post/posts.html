@@ -17,7 +17,7 @@
     <tbody>
         {% for post in posts %}
         <tr>
-            <th>{{ post["id"] }}</th>
+            <th><a href="{{ url_for('get_one_post', post_id=post['id']) }}">{{ post["id"] }}</a></th>
             <th>{{ post["title"] }}</th>
             <th>{{ post["content"] }}</th>
             <th>{{ post["created"] }}</th>
