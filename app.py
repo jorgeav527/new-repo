@@ -7,9 +7,7 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
-
 app = Flask(__name__)
-
 
 @app.route("/", methods=["GET"])
 def index():
@@ -35,7 +33,16 @@ def get_all_post():
     conn = get_db_connection()
     posts = conn.execute("SELECT * FROM posts").fetchall()
     conn.close()
-    return render_template(template_name_or_list="post/posts.html", posts=posts)
+
+    for post in posts:
+        print("======>", post["id"])
+        print("======>", post["title"])
+        print("======>", post["content"])
+        print("======>", post["created"])
+        print("====================================")
+    return render_template(template_name_or_list="posts.html", posts=posts)
+
+    #return render_template(template_name_or_list="post/posts.html", posts=posts)
 
 
 @app.route("/post/<int:post_id>", methods=["GET"])
@@ -65,6 +72,13 @@ def create_one_post():
     elif request.method == "GET":
         return render_template("post/create.html")
 
+
+    # conn = get_db_connection()
+    # post = conn.execute("SELECT * FROM posts WHERE id = ?", (post_id,)).fetchone()
+    # conn.close()
+    # if post is None:
+    #     abort(404)
+    # return render_template(template_name_or_list="post/post.html", post=post)
 
 @app.route("/post/edit/<int:post_id>", methods=["GET", "POST"])
 def edit_one_post(post_id):
