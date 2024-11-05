@@ -1,4 +1,4 @@
-from flask import Flask, render_template, abort, request, redirect, url_for
+from flask import Flask, render_template, abort, request, redirect, url_for, Response
 import sqlite3
 
 
@@ -93,14 +93,14 @@ def edit_one_post(post_id):
         return render_template(template_name_or_list="post/edit.html", post=post)
 
 
-@app.route("/post/delete/<int:post_id>", methods=["POST"])
+@app.route("/post/delete/<int:post_id>", methods=["DELETE"])
 def delete_one_post(post_id):
     conn = get_db_connection()
     conn.execute("DELETE FROM posts WHERE id = ?", (post_id,))
     conn.commit()
     conn.close()
 
-    return redirect(url_for("get_all_post"))
+    return Response(status=200)
 
 
 if __name__ == "__main__":
