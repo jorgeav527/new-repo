@@ -12,6 +12,7 @@
             <th>Titulo</th>
             <th>Contenido</th>
             <th>Fecha de Creación</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -21,6 +22,12 @@
             <th>{{ post["title"] }}</th>
             <th>{{ post["content"] }}</th>
             <th>{{ post["created"] }}</th>
+            <th>
+                <a href="{{ url_for('edit_one_post', post_id=post['id']) }}" class="btn btn-warning btn-sm">Edit</a>
+                <form action="{{ url_for('delete_one_post', post_id=post['id']) }}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar este post?');">Eliminar</button>
+                </form>
+            </th>
         </tr>
         {% endfor %}
     </tbody>
